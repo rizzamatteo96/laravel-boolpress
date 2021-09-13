@@ -39,14 +39,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // recupero i dati dal form
         $newPost = $request->all();
-
+        
+        // imposto lo slug dal titolo
         $newPost['slug'] = Str::slug($newPost['title'], '-');
         
+        // creo la nuova istanza per inviare i dati al DB
         $upPost = new Post();
 
+        // Invio i dati e li salvo nel DB
         $upPost->fill($newPost);
-
         $upPost->save();
 
         return redirect()->route('admin.posts.index');
@@ -84,10 +87,13 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        // recupero i dati dal form
         $editPost = $request->all();
 
+        // preparo l'eventuale nuovo slug
         $editPost['slug'] = Str::slug($editPost['title'], '-');
 
+        // carico le modifiche nel DB
         $post->update($editPost);
 
         return redirect()->route('admin.posts.index');
@@ -100,8 +106,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('admin.posts.index');
     }
 }
