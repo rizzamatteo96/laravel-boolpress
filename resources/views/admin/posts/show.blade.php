@@ -9,14 +9,14 @@
     <p class="card-text">{{$post->description}}</p>
   </div>
 </div>
-<div class="d-flex justify-content-between my-4">
-  <a href="{{route('admin.posts.index')}}" class="btn btn-primary">Torna indietro</a>
-  <a href="{{route('admin.posts.edit', $post->id)}}" class="btn btn-warning">Edit</a>
+<div class="my-4">
+  <a href="{{route('admin.posts.index')}}" class="btn btn-outline-dark"><i class="fas fa-arrow-left me-2"></i> Torna indietro</a>
+  <a href="{{route('admin.posts.edit', $post->id)}}" class="btn btn-outline-secondary"><i class="far fa-edit me-2"></i>Edit</a>
   <form action="{{route('admin.posts.destroy', $post->id)}}" method="POST" class="d-inline-block">
     {{-- Per ogni form bisogna inserire il token altrimenti il cambiamento non viene accettato dal sistema --}}
     @csrf
     @method('DELETE')
-    <button type="submit" class="btn btn-danger" onclick="return confirm('Sei sicuro di voler cancellare l\'elemento?')">Delete</button>
+    <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Sei sicuro di voler cancellare l\'elemento?')"><i class="far fa-trash-alt me-2"></i>Delete</button>
   </form>
 </div>
 @endsection

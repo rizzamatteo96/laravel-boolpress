@@ -80,7 +80,7 @@
                 @auth
                 <nav class="col-2 sidebar py-5">
                     <div class="sidebar-sticky">
-                        <ul class="nav flex-column border border-secondary rounded rounded-1">
+                        <ul class="nav flex-column border border-secondary rounded rounded-1 dashboard">
                             <li class="nav-item">
                                 <a class="nav-link text-secondary" href="{{route('admin.index')}}">
                                     <i class="fas fa-home"></i>

@@ -14,6 +14,7 @@
       <label for="description" class="form-label">Descrizione</label>
       <textarea type="password" class="form-control" id="description" name="description" rows="5"></textarea>
     </div>
+    <a href="{{route('admin.posts.index')}}" class="btn btn-outline-dark"><i class="fas fa-arrow-left me-2"></i> Torna indietro</a>
     <button type="submit" class="btn btn-primary">Salva</button>
   </form>
 
