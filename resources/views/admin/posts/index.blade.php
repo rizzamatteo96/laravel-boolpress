@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
+  <div class="d-flex justify-content-end">
+    <a href="{{route('admin.posts.create')}}" class="btn btn-secondary mb-5">Crea nuovo post</a>
+  </div>
+
   <table class="table">
     <thead>
       <tr>

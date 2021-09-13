@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -39,7 +39,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newPost = $request->all();
+
+        $newPost['slug'] = Str::slug($newPost['title'], '-');
+        
+        $upPost = new Post();
+
+        $upPost->fill($newPost);
+
+        $upPost->save();
+
+        return redirect()->route('admin.posts.index');
+
     }
 
     /**
