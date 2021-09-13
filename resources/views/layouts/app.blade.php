@@ -82,13 +82,13 @@
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column border border-secondary rounded rounded-1">
                             <li class="nav-item">
-                                <a class="nav-link text-secondary" href="{{ route('admin.index') }}">
+                                <a class="nav-link text-secondary" href="{{route('admin.index')}}">
                                     <i class="fas fa-home"></i>
                                     Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-secondary" href="#">
+                                <a class="nav-link text-secondary" href="{{route('admin.posts.index')}}">
                                     <i class="far fa-clipboard"></i>
                                     Posts
                                 </a>
