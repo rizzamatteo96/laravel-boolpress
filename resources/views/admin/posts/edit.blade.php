@@ -35,10 +35,4 @@
       <button type="submit" class="btn btn-outline-primary"><i class="far fa-save me-2"></i> Salva le modifiche</button>
     </div>
   </form>
-  <form action="{{route('admin.posts.destroy', $post->id)}}" method="POST" class="d-inline-block">
-    {{-- Per ogni form bisogna inserire il token altrimenti il cambiamento non viene accettato dal sistema --}}
-    @csrf
-    @method('DELETE')
-    <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Sei sicuro di voler cancellare l\'elemento?')"><i class="far fa-trash-alt me-2"></i>Delete</button>
-  </form>
-  @endsection
+@endsection
