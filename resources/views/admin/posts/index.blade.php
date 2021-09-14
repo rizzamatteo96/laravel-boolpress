@@ -20,7 +20,7 @@
           <th scope="row">{{$post->id}}</th>
           <td>{{$post->title}}</td>
           <td>
-            <a href="{{route('admin.posts.show', $post->id)}}" class="btn btn-outline-info px-3"><i class="fas fa-info"></i></a>
+            <a href="{{route('admin.posts.show', $post->slug)}}" class="btn btn-outline-info px-3"><i class="fas fa-info"></i></a>
             <a href="{{route('admin.posts.edit', $post->id)}}" class="btn btn-outline-secondary"><i class="far fa-edit"></i></a>
             <form action="{{route('admin.posts.destroy', $post->id)}}" method="POST" class="d-inline-block">
               {{-- Per ogni form bisogna inserire il token altrimenti il cambiamento non viene accettato dal sistema --}}
