@@ -39,6 +39,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // Creo le richieste di validazione
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required'
@@ -101,6 +102,12 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        // Creo le richieste di validazione
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required'
+        ]);
+
         // recupero i dati dal form
         $editPost = $request->all();
 
