@@ -50,12 +50,13 @@ class PostController extends Controller
         $newPost = $request->all();
         
         // imposto lo slug dal titolo verificando che non sia già presente nella tabella essendo questo univoco
-        $newSlug = Str::slug($newPost['title'], '-');
+        $baseSlug = Str::slug($newPost['title'], '-');
 
+        $newSlug = $baseSlug;
         $counter = 0;
         while(Post::where('slug', $newSlug)->first()){
             $counter++;
-            $newSlug = $newSlug . '-' . $counter;
+            $newSlug = $baseSlug . '-' . $counter;
         }
 
         $newPost['slug'] = $newSlug;
@@ -115,14 +116,15 @@ class PostController extends Controller
         // preparo l'eventuale nuovo slug verificando che non sia già presente nella tabella essendo questo univoco
         $editSlug = Str::slug($editPost['title'], '-');
         if($editSlug != $post->slug){
+
+            $newEditSlug = $editSlug;
             $counter = 0;
-            while(Post::where('slug', $editSlug)->first()){
+            while(Post::where('slug', $newEditSlug)->first()){
                 $counter++;
-                $editSlug = $editSlug . '-' . $counter;
+                $newEditSlug = $editSlug . '-' . $counter;
             }
-            
+            $editPost['slug'] = $newEditSlug;
         }
-        $editPost['slug'] = $editSlug;
 
 
         // carico le modifiche nel DB
