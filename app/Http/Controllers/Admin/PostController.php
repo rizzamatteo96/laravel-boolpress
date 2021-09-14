@@ -39,11 +39,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required'
+        ]);
+
+
         // recupero i dati dal form
         $newPost = $request->all();
         
-        // imposto lo slug dal titolo
-        $newPost['slug'] = Str::slug($newPost['title'], '-');
+        // imposto lo slug dal titolo verificando che non sia già presente nella tabella essendo questo univoco
+        $newSlug = Str::slug($newPost['title'], '-');
+
+        $counter = 0;
+        while(Post::where('slug', $newSlug)->first()){
+            $counter++;
+            $newSlug = $newSlug . '-' . $counter;
+        }
+
+        $newPost['slug'] = $newSlug;
         
         // creo la nuova istanza per inviare i dati al DB
         $upPost = new Post();
@@ -90,14 +104,23 @@ class PostController extends Controller
         // recupero i dati dal form
         $editPost = $request->all();
 
-        // preparo l'eventuale nuovo slug
-        $editPost['slug'] = Str::slug($editPost['title'], '-');
+        // preparo l'eventuale nuovo slug verificando che non sia già presente nella tabella essendo questo univoco
+        $editSlug = Str::slug($editPost['title'], '-');
+        if($editSlug != $post->slug){
+            $counter = 0;
+            while(Post::where('slug', $editSlug)->first()){
+                $counter++;
+                $editSlug = $editSlug . '-' . $counter;
+            }
+            
+        }
+        $editPost['slug'] = $editSlug;
+
 
         // carico le modifiche nel DB
         $post->update($editPost);
 
         return redirect()->route('admin.posts.index');
-        
     }
 
     /**
